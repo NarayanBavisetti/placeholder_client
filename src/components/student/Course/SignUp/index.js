@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import auth from "../../assets/images/auth.png";
-import google from "../../assets/images/google.png";
+import auth from "../../../../assets/images/auth.png";
+import google from "../../../../assets/images/google.png";
 import "../Login/login.css";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
-import authService from "../features/auth/authServices";
+import authService from "../../../features/auth/authServices";
 
 const SignUp = () => {
   const [name, setName] = useState();

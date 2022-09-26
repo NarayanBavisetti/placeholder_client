@@ -1,0 +1,41 @@
+nav.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 320px;
+  top: 0;
+  left: 0;
+  background-color: var(--sec-bg-clr);
+
+  .logo {
+    padding: 1rem;
+  }
+
+  .links {
+    margin-right: 1rem;
+
+    .single-link {
+      display: grid;
+      grid-template-columns: 30px auto;
+      grid-gap: 1rem;
+      padding: 1.3rem 1rem;
+      border-radius: 0 20px 20px 0;
+      color: var(--txt-clr);
+      border-left: 4px solid var(--ter-bg-clr);
+      transition: 0.3s all ease;
+
+      &.active {
+        color: var(--theme-blue);
+        background-color: var(--ter-bg-clr);
+        border-color: var(--theme-blue);
+      }
+
+      &:hover {
+        background-color: var(--ter-bg-clr);
+      }
+
+      &:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}

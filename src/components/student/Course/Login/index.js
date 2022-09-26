@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import auth from "../../assets/images/auth.png";
-import google from "../../assets/images/google.png";
+import auth from "../../../../assets/images/auth.png";
+import google from "../../../../assets/images/google.png";
 import "./login.css";
-import authService from "../features/auth/authServices";
+import authService from "../../../features/auth/authServices";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -13,9 +13,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (message) {
-      alert(message);
-    }
     if (token) {
       navigate("/");
       alert("Login Successfull");
@@ -28,7 +25,7 @@ const Login = () => {
       email,
       password,
     };
-    
+
     await authService.signInUser(values).then((res) => {
       setMessage(res.message);
       if (res.token) setToken(res.token);

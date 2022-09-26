@@ -1,0 +1,16 @@
+.single-course .card-header {
+  display: grid;
+  grid-template-columns: auto 30px;
+  align-items: center;
+  color: var(--txt-clr);
+}
+.single-course .card-header .educator-name {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--theme-dark-grey);
+}
+
+.single-lecture .card-footer {
+  margin-bottom: 0.5rem;
+  text-align: right;
+}/*# sourceMappingURL=course.css.map */
