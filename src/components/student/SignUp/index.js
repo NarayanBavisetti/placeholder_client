@@ -117,7 +117,7 @@ const SignUp = () => {
                 placeholder="Password*"
                 required
               />
-              <label for="password">Password*</label>
+              <label htmlFor="password">Password*</label>
             </div>
             <div className="input-group">
               <input
@@ -134,7 +134,7 @@ const SignUp = () => {
             Already have an account? <Link to="/signin">Sign In</Link>
           </div>
           <div className="row center-align">
-            <div class="input-group">
+            <div className="input-group">
               <button onClick={onSubmit}>Sign Up</button>
             </div>
             <div>or</div>

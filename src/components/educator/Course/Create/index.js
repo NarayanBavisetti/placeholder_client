@@ -1,8 +1,11 @@
 import axios from "axios";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import authHeader from "../../../features/auth/auth-header";
 import CourseAPI from "../../../features/auth/courseAPI";
+import Modal from "../../../Modal/index";
+import successful from "../../../../assets/images/icons/successful.png";
+import failed from "../../../../assets/images/icons/failed.png";
 
 const CreateCourse = () => {
   const [lectures, setLectures] = useState([
@@ -50,6 +53,7 @@ const CreateCourse = () => {
     }
   }, [person]);
 
+  const [modal, setModal] = useState(null);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -72,27 +76,53 @@ const CreateCourse = () => {
     };
 
     axios
-      .post(`${process.env.REACT_APP_URL}/educator/course`, values, {
+      .post(`${process.env.REACT_APP_URL}educator/course`, values, {
         headers: authHeader(),
       })
       .then((response) => {
-        alert(response.data.message);
-        navigate("/mycourses");
+        setModal(
+          <Modal
+            icon={successful}
+            message="Course has been created successfully."
+            buttons={[
+              {
+                label: "Okay",
+                actions: [() => navigate("/mycourses")],
+              },
+            ]}
+            close={() => setModal(null)}
+          />,
+        );
       })
       .catch((response) => {
-        console.log(response.response.data.message);
+        setModal(
+          <Modal
+            icon={failed}
+            message="Oops! Course could not be added. Please try again."
+            buttons={[
+              {
+                label: "Close",
+                close: true,
+              },
+            ]}
+            close={() => setModal(null)}
+          />,
+        );
       });
   };
 
   return (
     <>
+      {modal}
       <main>
-        <h1 className="page-title">Create a new course</h1>
-        <div className="page-content">
-          <form onSubmit={onSubmit} method="post">
-            <button type="submit" className="btn-them">
-              Create Course
+        <form onSubmit={onSubmit} method="post">
+          <div className="page-header">
+            <h1 className="page-title">Create a new course</h1>
+            <button type="submit" className="btn-theme">
+              Create Course&nbsp;&nbsp;<i className="fas fa-check"></i>
             </button>
+          </div>
+          <div className="page-content">
             <div className="row grid2">
               <div className="card">
                 <h2 className="card-title">Basic details</h2>
@@ -247,8 +277,8 @@ const CreateCourse = () => {
                 Add Lecture&nbsp;&nbsp;<i className="fas fa-plus"></i>
               </button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </main>
     </>
   );

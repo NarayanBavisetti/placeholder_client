@@ -21,8 +21,8 @@ const CourseList = () => {
 
   const allCourses = async () => {
     try {
-     axios
-        .get(`${process.env.REACT_APP_URL}/courses`, {
+      axios
+        .get(`${process.env.REACT_APP_URL}courses`, {
           headers: authHeader(),
         })
         .then((response) => {

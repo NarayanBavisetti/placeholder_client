@@ -3,11 +3,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authHeader from "../../../features/auth/auth-header";
 import SingleForum from "./Single/index";
+import Modal from "../../../Modal/index";
+import successful from "../../../../assets/images/icons/successful.png";
+import failed from "../../../../assets/images/icons/failed.png";
 
 const Forum = () => {
   const [text, setText] = useState();
   const [person, setPerson] = useState([]);
   const navigate = useNavigate();
+
+  const [modal, setModal] = useState(null);
 
   useEffect(() => {
     if (localStorage.getItem("data") != null) {
@@ -25,7 +30,7 @@ const Forum = () => {
   const allForums = async () => {
     try {
       axios
-        .get(`${process.env.REACT_APP_URL}/forum`, {
+        .get(`${process.env.REACT_APP_URL}forum`, {
           headers: authHeader(),
         })
         .then((response) => {
@@ -55,14 +60,35 @@ const Forum = () => {
         headers: authHeader(),
       })
       .then((response) => {
-        alert(response.data.message);
-        navigate("/forum");
+        setModal(
+          <Modal
+            icon={successful}
+            message="Question has been posted successfully."
+            buttons={[
+              {
+                label: "Okay",
+                actions: [() => navigate("/forum")],
+              },
+            ]}
+            close={() => setModal(null)}
+          />,
+        );
       })
       .catch((response) => {
-        console.log(response);
+        setModal(
+          <Modal
+            icon={failed}
+            message="Oops! Question could not be posted. Please try again"
+            buttons={[
+              {
+                label: "Close",
+                close: true,
+              },
+            ]}
+            close={() => setModal(null)}
+          />,
+        );
       });
-
-    console.log(values);
   };
 
   return (
