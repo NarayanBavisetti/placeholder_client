@@ -1,5 +1,4 @@
 const CreateCourse = () => {
-  
   return (
     <>
       <main>
