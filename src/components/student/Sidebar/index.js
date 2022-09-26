@@ -10,23 +10,29 @@ const Sidebar = () => {
       <nav className={"sidebar " + (sidebar ? "show" : null)}>
         <div className="logo"></div>
         <div className="links">
-          <Link to="/educator/" className="single-link active">
+          <Link to="/" className="single-link active">
             <div className="icon">
               <i className="fas fa-th"></i>
             </div>
             <span>Dashboard</span>
           </Link>
-          <Link to="/educator/course/" className="single-link">
+          <Link to="/course/" className="single-link">
             <div className="icon">
               <i className="fas fa-book"></i>
             </div>
             <span>Courses</span>
           </Link>
-          <Link to="/educator/course/create/" className="single-link">
+          <Link to="/bookmark/" className="single-link">
             <div className="icon">
-              <i className="fas fa-plus"></i>
+              <i className="fas fa-bookmark"></i>
             </div>
-            <span>Create Course</span>
+            <span>Bookmarks</span>
+          </Link>
+          <Link to="/student/profile/" className="single-link">
+            <div className="icon">
+              <i className="fas fa-user"></i>
+            </div>
+            <span>Profile</span>
           </Link>
           <a
             href="javascript:void(0);"

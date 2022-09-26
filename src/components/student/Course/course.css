@@ -13,4 +13,16 @@
 .single-lecture .card-footer {
   margin-bottom: 0.5rem;
   text-align: right;
+}
+
+.lecture-video {
+  width: 100%;
+  border-radius: 10px;
+  height: 400px;
+}
+
+@media only screen and (max-width: 650px) {
+  .lecture-video {
+    height: 250px;
+  }
 }/*# sourceMappingURL=course.css.map */

@@ -10,9 +10,6 @@ const SingleCourse = (props) => {
             <h2 className="card-title">{props.title}</h2>
             <h3 className="educator-name">by {props.educator}</h3>
           </div>
-          <div className="icon">
-            <i className="far fa-bookmark"></i>
-          </div>
         </div>
         <div className="card-body">
           <p className="desc">{props.children}</p>

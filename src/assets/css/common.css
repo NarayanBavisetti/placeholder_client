@@ -127,6 +127,9 @@ a {
   border-radius: 5px;
   padding: 8px 15px;
 }
+.btn-theme:hover {
+  background-color: #075f91;
+}
 
 .input-group {
   position: relative;
@@ -294,4 +297,57 @@ main .page-content .card .card-subtitle {
 }
 main .page-content .card .card-body {
   margin: 1rem 0 1.5rem;
+}
+
+@media only screen and (max-width: 1100px) {
+  .row.grid3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 900px) {
+  .row.grid2 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  main {
+    margin-left: 250px;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .input-group input,
+.input-group textarea {
+    font-size: 0.9rem;
+    padding: 10px 10px;
+  }
+  .input-group select {
+    padding: 10px 10px;
+    font-size: 0.9rem;
+  }
+  .input-group label {
+    padding: 0 20px 0 15px;
+  }
+  .row {
+    grid-gap: 1rem;
+  }
+  .row.grid3 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  main {
+    margin-left: calc(1.5rem + 30px);
+    padding: 1rem;
+  }
+  main .page-title {
+    font-size: 1.3rem;
+  }
+  main .page-content {
+    margin-top: 1rem;
+  }
+  main .page-content .card .card-title {
+    font-size: 1rem;
+  }
+  main .page-content .card .card-subtitle {
+    font-size: 0.9rem;
+  }
+  main .page-content .card .card-body {
+    margin: 1rem 0 1rem;
+  }
 }/*# sourceMappingURL=common.css.map */
