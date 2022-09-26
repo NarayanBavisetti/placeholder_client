@@ -4,7 +4,7 @@ import "../../forum.css";
 const SingleForum = (props) => {
   return (
     <>
-      <Link to="/forum/12" className="card single-forum">
+      <Link to={`/forum/${props.link}`} className="card single-forum">
         <h2 className="card-title">{props.children}</h2>
         <div className="card-body">
           <div className="meta">
