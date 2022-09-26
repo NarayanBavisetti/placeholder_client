@@ -28,6 +28,12 @@ const Sidebar = () => {
             </div>
             <span>Create Course</span>
           </Link>
+          <Link to="*" className="single-link">
+            <div className="icon">
+              <i className="fas fa-sign-out-alt"></i>
+            </div>
+            <span>Sign Out</span>
+          </Link>
           <a
             href="javascript:void(0);"
             className="single-link sidebar-toggle"

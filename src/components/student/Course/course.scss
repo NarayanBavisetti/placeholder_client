@@ -6,7 +6,7 @@
     color: var(--txt-clr);
 
     .educator-name {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: 400;
       color: var(--theme-dark-grey);
     }
@@ -26,7 +26,46 @@
   height: 400px;
 }
 
+.filters {
+  display: flex;
+
+  .single-filter {
+    color: var(--theme-blue);
+    border: 2px solid var(--theme-blue);
+    font-size: 0.8rem;
+    padding: 7px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.3s all ease;
+
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+
+    &.active,
+    &:hover {
+      background-color: var(--theme-blue);
+      color: #fff;
+    }
+  }
+}
+
 @media only screen and (max-width: 650px) {
+  .single-course {
+    .card-header {
+      .educator-name {
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: var(--theme-dark-grey);
+      }
+    }
+
+    .desc {
+      color: var(--theme-dark-grey);
+      font-size: 0.85rem;
+    }
+  }
+
   .lecture-video {
     height: 250px;
   }

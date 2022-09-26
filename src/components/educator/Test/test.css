@@ -1,14 +1,14 @@
-.single-course {
+.single-test {
   color: var(--txt-clr);
 }
-.single-course .desc {
+.single-test .desc {
   color: var(--theme-dark-grey);
   font-size: 0.95rem;
 }
 
 @media only screen and (max-width: 650px) {
-  .single-course .desc {
+  .single-test .desc {
     color: var(--theme-dark-grey);
     font-size: 0.85rem;
   }
-}/*# sourceMappingURL=course.css.map */
+}/*# sourceMappingURL=test.css.map */
