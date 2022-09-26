@@ -22,6 +22,12 @@ const Sidebar = () => {
             </div>
             <span>Courses</span>
           </Link>
+          <Link to="/test/" className="single-link">
+            <div className="icon">
+              <i className="fas fa-book-open"></i>
+            </div>
+            <span>Online Test</span>
+          </Link>
           <Link to="/bookmark/" className="single-link">
             <div className="icon">
               <i className="fas fa-bookmark"></i>
@@ -33,6 +39,12 @@ const Sidebar = () => {
               <i className="fas fa-user"></i>
             </div>
             <span>Profile</span>
+          </Link>
+          <Link to="*" className="single-link">
+            <div className="icon">
+              <i className="fas fa-sign-out-alt"></i>
+            </div>
+            <span>Sign Out</span>
           </Link>
           <a
             href="javascript:void(0);"

@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
-import "../../course.css";
+import "../../test.css";
 
-const SingleCourse = (props) => {
+const SingleTest = (props) => {
   return (
     <>
-      <Link to="" className="card single-course">
+      <div className="card single-test">
         <h2 className="card-title">{props.title}</h2>
         <div className="card-body">
           <p className="desc">{props.children}</p>
         </div>
-      </Link>
+      </div>
     </>
   );
 };
 
-export default SingleCourse;
+export default SingleTest;
