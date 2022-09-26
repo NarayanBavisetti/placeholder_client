@@ -21,8 +21,8 @@ const MainComponent = () => {
       <EducatorSidebar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<Login />} /> */}
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<Login />} />
 
         {/* Student Routes */}
         <Route path="/student/course" element={<StudentCourseList />} />
