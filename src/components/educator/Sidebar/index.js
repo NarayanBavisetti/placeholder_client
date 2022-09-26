@@ -1,9 +1,45 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import authHeader from "../../features/auth/auth-header";
 import "./sidebar.css";
 
 const Sidebar = () => {
   const [sidebar, showSidebar] = useState(false);
+  const navigate = useNavigate();
+  const [person, setPerson] = useState();
+  useEffect(() => {
+    if (localStorage.getItem("data") != null) {
+      let data = JSON.parse(localStorage.getItem("data"));
+      setPerson(data._id);
+    }
+  }, [person]);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("data");
+    navigate("/signin");
+  };
+
+  const getCourses = () => {
+    const id = person;
+    axios
+      .get(`${process.env.REACT_APP_URL}/educator/mycourses/${id}`, {
+        headers: authHeader(),
+      })
+      .then((response) => {
+        console.log(response);
+        // alert(response.data.message);
+        // navigate("/mycourses");
+      })
+      .catch((response) => {
+        console.log(response.response.data.message);
+      });
+  };
+
+  useEffect(() => {
+    getCourses();
+  }, [person]);
 
   return (
     <>
@@ -16,7 +52,7 @@ const Sidebar = () => {
             </div>
             <span>Dashboard</span>
           </Link>
-          <Link to="/educator/course/" className="single-link">
+          <Link to={`/educator/course/${person}`} className="single-link">
             <div className="icon">
               <i className="fas fa-book"></i>
             </div>
@@ -28,12 +64,18 @@ const Sidebar = () => {
             </div>
             <span>Create Course</span>
           </Link>
-          <Link to="*" className="single-link">
+
+          <a
+            href="javascript:void(0);"
+            onClick={logout}
+            className="single-link"
+          >
             <div className="icon">
               <i className="fas fa-sign-out-alt"></i>
             </div>
             <span>Sign Out</span>
-          </Link>
+          </a>
+
           <a
             href="javascript:void(0);"
             className="single-link sidebar-toggle"

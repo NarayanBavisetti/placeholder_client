@@ -1,6 +1,41 @@
+import axios from "axios";
+import React, { useState,useEffect } from "react";
+import authHeader from "../../../features/auth/auth-header";
 import SingleCourse from "./Single/index";
 
 const CourseList = () => {
+
+//   const [person, setPerson] = useState();
+//   useEffect(() => {
+//     if (localStorage.getItem("data") != null) {
+//       let data = JSON.parse(localStorage.getItem("data"));
+//       setPerson(data.personType);
+//     }
+//   }, [person]);
+
+
+// console.log(person)
+//   const getCourses = () => {
+//     // const id = person._id;
+//     axios
+//     .get(`${process.env.REACT_APP_URL}/educator/mycourses/${person._id}`, {
+//       headers: authHeader(),
+//     })
+//     .then((response) => {
+//       console.log(response);
+//       // alert(response.data.message);
+//       // navigate("/mycourses");
+//     })
+//     .catch((response) => {
+//       console.log(response.response.data.message);
+//     });
+//   }
+//   useEffect(() => {
+//        getCourses();
+//   },[])
+
+
+
   return (
     <>
       <main>

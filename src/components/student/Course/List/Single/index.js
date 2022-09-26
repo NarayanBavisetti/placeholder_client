@@ -5,7 +5,7 @@ const SingleCourse = (props) => {
   return (
     <>
       <Link
-        to="/course/12"
+        to={`/course/${props.id}`}
         className={"card single-course "}
         category={props.category}
       >

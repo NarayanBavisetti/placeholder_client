@@ -1,4 +1,7 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import authHeader from "../../../features/auth/auth-header";
 import SingleCourse from "./Single/index";
 
 const CourseList = () => {
@@ -8,6 +11,31 @@ const CourseList = () => {
   const [upsc, seUpsc] = useState(false);
   const [gate, setGate] = useState(false);
   const [cat, setCat] = useState(false);
+
+  const [course, setCourse] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    allCourses();
+  }, []);
+
+  const allCourses = async () => {
+    try {
+     axios
+        .get(`${process.env.REACT_APP_URL}/courses`, {
+          headers: authHeader(),
+        })
+        .then((response) => {
+          setCourse(response.data);
+        })
+        .catch((response) => {
+          alert(response.response.data.message);
+        });
+    } catch (err) {
+      console.log(err);
+      navigate("/");
+    }
+  };
 
   return (
     <>
@@ -37,28 +65,23 @@ const CourseList = () => {
               CAT
             </div>
           </div>
+
           <div className="row grid2">
-            <SingleCourse
-              title="Course 1"
-              educator="Aaryan Khandelwal"
-              date="06-10-2022"
-              category="NEET"
-            >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Reprehenderit nemo atque itaque perferendis at vitae consequuntur,
-              magni inventore facere architecto voluptas illum ratione ut soluta
-              enim. Autem nam blanditiis quod!
-            </SingleCourse>
-            <SingleCourse
-              title="Course 2"
-              educator="Aaryan Khandelwal"
-              date="06-10-2022"
-              category="GATE"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti
-              quibusdam enim laborum porro maxime harum, ex optio amet
-              laboriosam accusamus?
-            </SingleCourse>
+            {course.map((item, index) => {
+              return (
+                <>
+                  <SingleCourse
+                    title={item.title}
+                    id={item._id}
+                    educator={item.educatorName}
+                    date="06-10-2022"
+                    category={item.educatorName}
+                  >
+                    {item.description}
+                  </SingleCourse>
+                </>
+              );
+            })}
           </div>
         </div>
       </main>

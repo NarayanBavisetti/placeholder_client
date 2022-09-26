@@ -57,7 +57,7 @@ const MainComponent = () => {
             {person == "EDUCATOR" ? (
               <>
                 <Route
-                  path="/educator/course"
+                  path="/educator/course/:id"
                   element={<EducatorCourseList />}
                 />
                 <Route

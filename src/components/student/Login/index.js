@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import auth from "../../../assets/images/auth.png";
 import google from "../../../assets/images/google.png";
 import "./login.css";
-import authService from "../../features/auth/authServices";
 import axios from "axios";
 import authHeader from "../../features/auth/auth-header";
 
@@ -27,7 +26,6 @@ const Login = () => {
       email,
       password,
     };
-
     axios
       .post(`${process.env.REACT_APP_URL}/signin`, values, {
         headers: authHeader(),
