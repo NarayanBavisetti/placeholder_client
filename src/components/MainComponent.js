@@ -1,5 +1,5 @@
-import Login from "./student/Course/Login/index";
-import SignUp from "./student/Course/SignUp/index";
+import Login from "./student/Login/index";
+import SignUp from "./student/SignUp/index";
 import Home from "./Home/index";
 
 // Student Routes
@@ -13,6 +13,7 @@ import EducatorCreateCourse from "./educator/Course/Create/index";
 
 import "../assets/css/common.css";
 import { Route, Routes } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const MainComponent = () => {
   return (
@@ -20,8 +21,8 @@ const MainComponent = () => {
       <EducatorSidebar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<Login />} />
+        {/* <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<Login />} /> */}
 
         {/* Student Routes */}
         <Route path="/student/course" element={<StudentCourseList />} />

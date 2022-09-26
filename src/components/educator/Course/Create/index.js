@@ -1,4 +1,14 @@
+import { useState } from "react";
+import SingleLecture from "./SingleLecture/index";
+
 const CreateCourse = () => {
+  const [lectures, setLecture] = useState([<SingleLecture sno="1" />]);
+
+  const addLecture = () => {
+    const element = <SingleLecture sno={lectures.length + 1} />;
+    setLecture(lectures.concat(element));
+  };
+
   return (
     <>
       <main>
@@ -39,9 +49,21 @@ const CreateCourse = () => {
               </div>
             </div>
             <div className="card">
-              <h2 className="card-title">Pricing</h2>
+              <h2 className="card-title">Other Details</h2>
               <div className="card-body">
                 <div className="row">
+                  <div className="input-group">
+                    <select required>
+                      <option value="">--Select category--</option>
+                      <option value="JEE mains/Advance">
+                        JEE mains/Advance
+                      </option>
+                      <option value="NEET">NEET</option>
+                      <option value="UPSC">UPSC</option>
+                      <option value="GATE">GATE</option>
+                      <option value="CAT">CAT</option>
+                    </select>
+                  </div>
                   <div className="input-group">
                     <input
                       type="number"
@@ -64,105 +86,16 @@ const CreateCourse = () => {
               </div>
             </div>
           </div>
-          <div className="row grid2">
-            <div className="card">
-              <h2 className="card-title">Lecture 1 Details</h2>
-              <div className="card-body">
-                <div className="row">
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      id="l2title"
-                      placeholder="Title*"
-                      required
-                    />
-                    <label htmlFor="l2title">Title*</label>
-                  </div>
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      id="l2topic"
-                      placeholder="Topic*"
-                      required
-                    />
-                    <label htmlFor="l2topic">Topic*</label>
-                  </div>
-                  <div className="input-group">
-                    <input
-                      type="url"
-                      id="l2video"
-                      placeholder="Video Link*"
-                      required
-                    />
-                    <label htmlFor="l2video">Video Link*</label>
-                  </div>
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      id="l2attachment"
-                      placeholder="Attachment(.pdf only)"
-                    />
-                    <label htmlFor="l2attachment">Attachment(.pdf only)</label>
-                  </div>
-                  <div className="input-group">
-                    <textarea
-                      rows="5"
-                      placeholder="Description*"
-                      required
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="card">
-              <h2 className="card-title">Lecture 2 Details</h2>
-              <div className="card-body">
-                <div className="row">
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      id="l2title"
-                      placeholder="Title*"
-                      required
-                    />
-                    <label htmlFor="l2title">Title*</label>
-                  </div>
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      id="l2topic"
-                      placeholder="Topic*"
-                      required
-                    />
-                    <label htmlFor="l2topic">Topic*</label>
-                  </div>
-                  <div className="input-group">
-                    <input
-                      type="url"
-                      id="l2video"
-                      placeholder="Video Link*"
-                      required
-                    />
-                    <label htmlFor="l2video">Video Link*</label>
-                  </div>
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      id="l2attachment"
-                      placeholder="Attachment(.pdf only)"
-                    />
-                    <label htmlFor="l2attachment">Attachment(.pdf only)</label>
-                  </div>
-                  <div className="input-group">
-                    <textarea
-                      rows="5"
-                      placeholder="Description*"
-                      required
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="row grid2">{lectures}</div>
+          <div className="row">
+            <button
+              type="button"
+              className="btn-theme"
+              style={{ width: "min-content" }}
+              onClick={addLecture}
+            >
+              Add Lecture&nbsp;&nbsp;<i className="fas fa-plus"></i>
+            </button>
           </div>
         </div>
       </main>

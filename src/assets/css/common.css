@@ -90,6 +90,7 @@ input[type=number] {
 button {
   border: none;
   outline: none;
+  white-space: nowrap;
   cursor: pointer;
   transition: 0.3s all ease;
 }
@@ -137,7 +138,7 @@ a {
 .input-group textarea {
   background-color: inherit;
   color: var(--txt-clr);
-  font-size: 1em;
+  font-size: 1rem;
   padding: 10px 10px;
   border: none;
   border: 2px solid var(--theme-dark-grey);
@@ -197,6 +198,8 @@ a {
   border: 2px solid var(--theme-dark-grey);
   border-radius: 5px;
   color: var(--theme-dark-grey);
+  font-size: 1rem;
+  background: inherit;
   outline: none;
   cursor: pointer;
 }
