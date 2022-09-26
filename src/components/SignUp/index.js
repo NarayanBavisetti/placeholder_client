@@ -1,33 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { signUpUser, reset } from "../features/auth/authSlice";
 import auth from "../../assets/images/auth.png";
 import google from "../../assets/images/google.png";
 import "../Login/login.css";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
+import authService from "../features/auth/authServices";
 
 const SignUp = () => {
   const [name, setName] = useState();
+  const [message, setMessage] = useState();
+  const [token, setToken] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { data, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
 
   useEffect(() => {
-    if (isError) {
-      alert("Error while signing in");
+    if (message) {
+      alert(message);
     }
-    if (isSuccess || data) {
-      navigate("/");
+    if (message) {
+      navigate("/signin");
       alert("Login Successfull");
     }
-    dispatch(reset());
-  }, [data, isError, isSuccess, message, isLoading, navigate, dispatch]);
+  }, [navigate, message]);
 
   useEffect(() => {
     function start() {
@@ -40,15 +36,19 @@ const SignUp = () => {
     gapi.load("client:auth2", start);
   });
 
-  const onSubmit = () => {
+  const onSubmit =  (e) => {
+    e.preventDefault();
+
     const values = {
       name,
       email,
       password,
-      loginType:"AUTH"
+      loginType: "AUTH",
     };
-    console.log(values);
-    dispatch(signUpUser(values));
+
+   authService.signUpUser(values).then((res) => {
+      setMessage(res.message);
+    });
     setSection(2);
   };
   const googleFailure = (error) => {
@@ -56,21 +56,18 @@ const SignUp = () => {
   };
 
   const googleSuccess = async (res) => {
-
-    // console.log(res);
     const name = res.profileObj.name;
     const email = res.profileObj.email;
     const values = {
       name,
       email,
-      loginType:"GOOGLE"
+      loginType: "GOOGLE",
     };
-    console.log(values);
-    navigate("/");
+
+    await authService.signUpUser(values).then((res) => {
+      setMessage(res.message);
+    });
     // res.tokenId;
-    // res.profileObj.name;
-    // res.profileObj.email;
-    // res.profileObj.imageUrl
   };
   const [section, setSection] = useState(1);
 

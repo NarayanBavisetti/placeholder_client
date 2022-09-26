@@ -8,6 +8,7 @@ const signUpUser = async (userData) => {
 	if (response.data) {
 	     console.log(response.data);
 	}
+	console.log(response)
 	return response.data;
 };
 
