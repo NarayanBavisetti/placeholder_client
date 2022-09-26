@@ -9,6 +9,8 @@ import StudentSingleCourse from "./student/Course/SingleCourse/index";
 import StudentSingleLecture from "./student/Course/SingleLecture/index";
 import StudentTestList from "./student/Test/List/index";
 import StudentSingleTest from "./student/Test/SingleTest/index";
+import ForumList from "./student/Forum/List/index";
+import SingleForum from "./student/Forum/SingleForum/index";
 
 // Educator Routes
 import EducatorSidebar from "./educator/Sidebar/index";
@@ -33,8 +35,8 @@ const MainComponent = () => {
 
   return (
     <>
-      {person == "STUDENT" ? <StudentSidebar /> : null}
-      {person == "EDUCATOR" ? <EducatorSidebar /> : null}
+      {person === "STUDENT" ? <StudentSidebar /> : null}
+      {person === "EDUCATOR" ? <EducatorSidebar /> : null}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
@@ -43,7 +45,7 @@ const MainComponent = () => {
         {/* Student Routes */}
         {person != undefined ? (
           <>
-            {person == "STUDENT" ? (
+            {person === "STUDENT" ? (
               <>
                 <Route path="/course" element={<StudentCourseList />} />
                 <Route path="/course/:id" element={<StudentSingleCourse />} />
@@ -51,10 +53,13 @@ const MainComponent = () => {
                   path="/course/lecture/:id"
                   element={<StudentSingleLecture />}
                 />
+                <Route path="/forum" element={<ForumList />} />
+                <Route path="/forum/:id" element={<SingleForum />} />
               </>
             ) : null}
+
             {/* Educator Routes */}
-            {person == "EDUCATOR" ? (
+            {person === "EDUCATOR" ? (
               <>
                 <Route
                   path="/educator/course/:id"

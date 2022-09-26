@@ -28,6 +28,12 @@ const Sidebar = () => {
             </div>
             <span>Online Test</span>
           </Link>
+          <Link to="/forum/" className="single-link">
+            <div className="icon">
+              <i className="fas fa-question"></i>
+            </div>
+            <span>Forum</span>
+          </Link>
           <Link to="/bookmark/" className="single-link">
             <div className="icon">
               <i className="fas fa-bookmark"></i>

@@ -1,33 +1,66 @@
 .auth-container {
-  background-color: var(--theme-yellow);
+  height: 90vh;
+  width: 50vw;
+  margin: 5vh auto;
+  background-color: var(--sec-bg-clr);
+  border-radius: 20px;
+  padding: 0;
 }
 .auth-container .auth-header {
   height: 30vh;
-  padding: 16px;
-  text-align: center;
-  overflow-y: hidden;
+  border-radius: 20px 20px 0 0;
+  background-image: url("../../../assets/images/auth-slider/sign-in.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.auth-container .auth-header.sign-up {
+  background-image: url("../../../assets/images/auth-slider/sign-up.png");
 }
 .auth-container .auth-body {
+  padding: 1.5rem;
   background-color: var(--theme-grey);
-  border-radius: 25px 25px 0 0;
-  height: 70vh;
-  padding: 16px;
+  height: 60vh;
+  padding: 1rem;
   padding-top: 7vh;
 }
-.auth-container .auth-body .auth-section {
-  display: none;
+.auth-container .auth-body .message {
+  margin-top: 0.75rem;
 }
-.auth-container .auth-body .auth-section.active {
-  display: block;
+.auth-container .auth-body .message a {
+  color: var(--theme-blue);
 }
 .auth-container .auth-body button.google {
-  display: inline-block;
-  background-color: #fff;
-  border-color: #fff;
-  color: #000;
+  display: flex;
+  align-items: center;
+  background-color: var(--ter-bg-clr);
+  border-color: var(--ter-bg-clr);
   box-shadow: var(--shadow);
+  color: var(--txt-clr);
 }
 .auth-container .auth-body button.google img {
   height: 25px;
   margin-left: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .auth-container {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    border-radius: 0;
+  }
+  .auth-container .auth-header {
+    border-radius: 0;
+    background-size: 150%;
+  }
+  .auth-container .auth-body {
+    padding: 1rem;
+    height: 70vh;
+    padding-top: 7vh;
+  }
+  .auth-container .auth-body .message {
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+  }
 }/*# sourceMappingURL=login.css.map */

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../assets/images/auth.png";
 import google from "../../../assets/images/google.png";
 import "../Login/login.css";
@@ -40,6 +40,7 @@ const SignUp = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     const values = {
       name,
       email,
@@ -49,12 +50,12 @@ const SignUp = () => {
     };
 
     axios
-      .post(`${process.env.REACT_APP_URL}/signup`, values, {
+      .post(`${process.env.REACT_APP_URL}signup`, values, {
         headers: authHeader(),
       })
       .then((response) => {
         console.log(response);
-        alert("Signup Successfull");
+        alert("Sign Up Successfull");
         navigate("/signin");
       })
       .catch((response) => {
@@ -85,13 +86,10 @@ const SignUp = () => {
   return (
     <>
       <main className="auth-container">
-        <div className="auth-header">
-          <img src={auth} className="w-100" alt="Auth Background" />
-        </div>
+        <div className="auth-header sign-up"></div>
         <div className="auth-body">
-          {/* <form onSubmit={onSubmit} method="post"> */}
-          <div className="row" style={{ gridRowGap: "1rem" }}>
-            <div class="input-group">
+          <div className="row grid2">
+            <div className="input-group">
               <input
                 type="text"
                 id="fname"
@@ -99,7 +97,7 @@ const SignUp = () => {
                 placeholder="Full Name*"
                 required
               />
-              <label for="fname">Full Name*</label>
+              <label htmlFor="fname">Full Name*</label>
             </div>
             <div className="input-group">
               <input
@@ -111,7 +109,7 @@ const SignUp = () => {
               />
               <label htmlFor="mobile">Email</label>
             </div>
-            <div class="input-group">
+            <div className="input-group">
               <input
                 type="password"
                 id="password"
@@ -121,7 +119,7 @@ const SignUp = () => {
               />
               <label for="password">Password*</label>
             </div>
-            <div class="input-group">
+            <div className="input-group">
               <input
                 type="password"
                 id="cpassword"
@@ -129,24 +127,24 @@ const SignUp = () => {
                 placeholder="Confirm Password*"
                 required
               />
-              <label for="cpassword">Confirm Password*</label>
+              <label htmlFor="cpassword">Confirm Password*</label>
             </div>
-            <div class="input-group">
-              <button onClick={onSubmit} className="w-100">
-                Signup
-              </button>
-            </div>
-            <div className="text-center text-dark-grey">or</div>
           </div>
-          {/* </form> */}
-          <div className="row">
+          <div className="message">
+            Already have an account? <Link to="/signin">Sign In</Link>
+          </div>
+          <div className="row center-align">
+            <div class="input-group">
+              <button onClick={onSubmit}>Sign Up</button>
+            </div>
+            <div>or</div>
             <GoogleLogin
               clientId={process.env.REACT_APP_CLIENT_ID}
               cookiePolicy="single_host_origin"
               render={(renderProps) => (
                 <div className="input-group">
                   <button
-                    className="google w-100"
+                    className="google"
                     onClick={renderProps.onClick}
                     disabled={renderProps.disabled}
                   >
