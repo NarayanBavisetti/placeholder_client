@@ -1,0 +1,41 @@
+.auth-container {
+  background-color: var(--theme-yellow);
+}
+
+.auth-container .auth-header {
+  height: 30vh;
+  padding: 16px;
+  text-align: center;
+  overflow-y: hidden;
+}
+
+.auth-container .auth-body {
+  background-color: var(--theme-grey);
+  border-radius: 25px 25px 0 0;
+  height: 70vh;
+  padding: 16px;
+  padding-top: 7vh;
+}
+
+.auth-container .auth-body .auth-section {
+  display: none;
+}
+
+.auth-container .auth-body .auth-section.active {
+  display: block;
+}
+
+.auth-container .auth-body button.google {
+  display: inline-block;
+  background-color: #fff;
+  border-color: #fff;
+  color: #000;
+  -webkit-box-shadow: var(--shadow);
+          box-shadow: var(--shadow);
+}
+
+.auth-container .auth-body button.google img {
+  height: 25px;
+  margin-left: 10px;
+}
+/*# sourceMappingURL=login.css.map */
