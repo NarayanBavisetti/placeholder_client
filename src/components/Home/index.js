@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 
-export default function index() {
-  return (
-    <div>Home</div>
-  )
+export default function Home() {
+
+  return <div>Homeee</div>;
 }

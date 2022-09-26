@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import authHeader from "../../../features/auth/auth-header";
 import CourseAPI from "../../../features/auth/courseAPI";
@@ -41,12 +41,24 @@ const CreateCourse = () => {
   const [pOriginalPrice, setOriginalPrice] = useState();
   const [pdiscountedPrice, setDiscountedPrice] = useState();
 
+  const [person, setPerson] = useState();
+
+  useEffect(() => {
+    if (localStorage.getItem("data") != null) {
+      let data = JSON.parse(localStorage.getItem("data"));
+      setPerson(data);
+    }
+  }, [person]);
+
+
   const onSubmit = async (e) => {
     e.preventDefault();
     let date = Date.parse(pDate);
     let discountedPrice = parseInt(pdiscountedPrice);
     let originalPrice = parseInt(pOriginalPrice);
-    // let   educatorId = 
+    let educatorId = person._id;
+    let educatorName = person.name;
+
     const values = {
       title,
       date,
@@ -55,8 +67,8 @@ const CreateCourse = () => {
       originalPrice,
       discountedPrice,
       lectures,
-      // educatorId,
-      // educatorName,
+      educatorId,
+      educatorName,
     };
 
     axios

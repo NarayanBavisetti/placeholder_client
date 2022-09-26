@@ -18,25 +18,52 @@ import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const MainComponent = () => {
+  const [person, setPerson] = useState();
+
+  useEffect(() => {
+    if (localStorage.getItem("data") != null) {
+      let data = JSON.parse(localStorage.getItem("data"));
+      setPerson(data.personType);
+    }
+  }, [person]);
+
   return (
     <>
-      <StudentSidebar />
+      {person == "STUDENT" ? <StudentSidebar /> : null}
+      {person == "EDUCATOR" ? <EducatorSidebar /> : null}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<Login />} />
 
         {/* Student Routes */}
-        <Route path="/course" element={<StudentCourseList />} />
-        <Route path="/course/:id" element={<StudentSingleCourse />} />
-        <Route path="/course/lecture/:id" element={<StudentSingleLecture />} />
-
-        {/* Educator Routes */}
-        <Route path="/educator/course" element={<EducatorCourseList />} />
-        <Route
-          path="/educator/course/create"
-          element={<EducatorCreateCourse />}
-        />
+        {person != undefined ? (
+          <>
+            {person == "STUDENT" ? (
+              <>
+                <Route path="/course" element={<StudentCourseList />} />
+                <Route path="/course/:id" element={<StudentSingleCourse />} />
+                <Route
+                  path="/course/lecture/:id"
+                  element={<StudentSingleLecture />}
+                />
+              </>
+            ) : null}
+            {/* Educator Routes */}
+            {person == "EDUCATOR" ? (
+              <>
+                <Route
+                  path="/educator/course"
+                  element={<EducatorCourseList />}
+                />
+                <Route
+                  path="/educator/course/create"
+                  element={<EducatorCreateCourse />}
+                />
+              </>
+            ) : null}
+          </>
+        ) : null}
       </Routes>
     </>
   );

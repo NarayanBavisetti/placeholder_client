@@ -4,6 +4,8 @@ import auth from "../../../assets/images/auth.png";
 import google from "../../../assets/images/google.png";
 import "./login.css";
 import authService from "../../features/auth/authServices";
+import axios from "axios";
+import authHeader from "../../features/auth/auth-header";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -26,10 +28,19 @@ const Login = () => {
       password,
     };
 
-    await authService.signInUser(values).then((res) => {
-      setMessage(res.message);
-      if (res.token) setToken(res.token);
-    });
+    axios
+      .post(`${process.env.REACT_APP_URL}/signin`, values, {
+        headers: authHeader(),
+      })
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+        localStorage.setItem("data", JSON.stringify(response.data));
+        navigate("/");
+      })
+      .catch((response) => {
+        console.log(response);
+      });
   };
 
   return (

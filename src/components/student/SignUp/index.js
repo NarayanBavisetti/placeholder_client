@@ -6,6 +6,8 @@ import "../Login/login.css";
 import GoogleLogin from "react-google-login";
 import { gapi } from "gapi-script";
 import authService from "../../features/auth/authServices";
+import axios from "axios";
+import authHeader from "../../features/auth/auth-header";
 
 const SignUp = () => {
   const [name, setName] = useState();
@@ -38,19 +40,28 @@ const SignUp = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     const values = {
       name,
       email,
       password,
+      personType: "STUDENT",
       loginType: "AUTH",
     };
 
-    authService.signUpUser(values).then((res) => {
-      setMessage(res.message);
-    });
-    setSection(2);
+    axios
+      .post(`${process.env.REACT_APP_URL}/signup`, values, {
+        headers: authHeader(),
+      })
+      .then((response) => {
+        console.log(response);
+        alert("Signup Successfull");
+        navigate("/signin");
+      })
+      .catch((response) => {
+        alert(response.response.data.message);
+      });
   };
+
   const googleFailure = (error) => {
     console.log(error);
   };
@@ -69,7 +80,7 @@ const SignUp = () => {
     });
     // res.tokenId;
   };
-  const [section, setSection] = useState(1);
+  // const [section, setSection] = useState(1);
 
   return (
     <>
@@ -78,55 +89,55 @@ const SignUp = () => {
           <img src={auth} className="w-100" alt="Auth Background" />
         </div>
         <div className="auth-body">
-          {/* <form  method="post"> */}
-            <div className="row" style={{ gridRowGap: "1rem" }}>
-              <div class="input-group">
-                <input
-                  type="text"
-                  id="fname"
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Full Name*"
-                  required
-                />
-                <label for="fname">Full Name*</label>
-              </div>
-              <div className="input-group">
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Email*"
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <label htmlFor="mobile">Email</label>
-              </div>
-              <div class="input-group">
-                <input
-                  type="password"
-                  id="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password*"
-                  required
-                />
-                <label for="password">Password*</label>
-              </div>
-              <div class="input-group">
-                <input
-                  type="password"
-                  id="cpassword"
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Confirm Password*"
-                  required
-                />
-                <label for="cpassword">Confirm Password*</label>
-              </div>
-              <div class="input-group">
-                <button onClick={onSubmit} className="w-100">
-                  Signup
-                </button>
-              </div>
-              <div className="text-center text-dark-grey">or</div>
+          {/* <form onSubmit={onSubmit} method="post"> */}
+          <div className="row" style={{ gridRowGap: "1rem" }}>
+            <div class="input-group">
+              <input
+                type="text"
+                id="fname"
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Full Name*"
+                required
+              />
+              <label for="fname">Full Name*</label>
             </div>
+            <div className="input-group">
+              <input
+                type="email"
+                id="email"
+                placeholder="Email*"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <label htmlFor="mobile">Email</label>
+            </div>
+            <div class="input-group">
+              <input
+                type="password"
+                id="password"
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password*"
+                required
+              />
+              <label for="password">Password*</label>
+            </div>
+            <div class="input-group">
+              <input
+                type="password"
+                id="cpassword"
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Confirm Password*"
+                required
+              />
+              <label for="cpassword">Confirm Password*</label>
+            </div>
+            <div class="input-group">
+              <button onClick={onSubmit} className="w-100">
+                Signup
+              </button>
+            </div>
+            <div className="text-center text-dark-grey">or</div>
+          </div>
           {/* </form> */}
           <div className="row">
             <GoogleLogin
@@ -148,29 +159,6 @@ const SignUp = () => {
               onFailure={googleFailure}
             />
           </div>
-          {/* <section
-            className={
-              "auth-section section2 " + (section === 2 ? "active" : null)
-            }
-          >
-            <div className="row" style={{ gridRowGap: "1rem" }}>
-              <div class="input-group">
-                <input
-                  type="text"
-                  id="otp"
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="OTP*"
-                  required
-                />
-                <label for="otp">OTP*</label>
-              </div>
-              <div class="input-group">
-                <button className="w-100" onClick={onSubmit}>
-                  Send OTP
-                </button>
-              </div>
-            </div>
-          </section> */}
         </div>
       </main>
     </>
