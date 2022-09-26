@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const SingleLecture = (props) => {
   return (
     <>
@@ -9,31 +11,28 @@ const SingleLecture = (props) => {
               <input
                 type="text"
                 id={"l" + props.sno + "title"}
-                placeholder="Title*"
-                required
+                placeholder="Title"
               />
-              <label htmlFor={"l" + props.sno + "title"}>Title*</label>
+              <label htmlFor={"l" + props.sno + "title"}>Title</label>
             </div>
             <div className="input-group">
               <input
                 type="text"
                 id={"l" + props.sno + "topic"}
-                placeholder="Topic*"
-                required
+                placeholder="Topic"
               />
-              <label htmlFor={"l" + props.sno + "topic"}>Topic*</label>
+              <label htmlFor={"l" + props.sno + "topic"}>Topic</label>
             </div>
             <div className="input-group">
               <input
                 type="url"
                 id={"l" + props.sno + "video"}
-                placeholder="Video Link*"
-                required
+                placeholder="Video Link"
               />
-              <label htmlFor={"l" + props.sno + "video"}>Video Link*</label>
+              <label htmlFor={"l" + props.sno + "video"}>Video Link</label>
             </div>
             <div className="input-group">
-              <textarea rows="5" placeholder="Description*" required></textarea>
+              <textarea rows="5" placeholder="Description"></textarea>
             </div>
           </div>
         </div>

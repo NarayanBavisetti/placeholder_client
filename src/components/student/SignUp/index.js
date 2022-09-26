@@ -78,11 +78,7 @@ const SignUp = () => {
           <img src={auth} className="w-100" alt="Auth Background" />
         </div>
         <div className="auth-body">
-          <section
-            className={
-              "auth-section section1 " + (section === 1 ? "active" : null)
-            }
-          >
+          {/* <form  method="post"> */}
             <div className="row" style={{ gridRowGap: "1rem" }}>
               <div class="input-group">
                 <input
@@ -125,31 +121,33 @@ const SignUp = () => {
                 <label for="cpassword">Confirm Password*</label>
               </div>
               <div class="input-group">
-                <button className="w-100" onClick={onSubmit}>
+                <button onClick={onSubmit} className="w-100">
                   Signup
                 </button>
               </div>
               <div className="text-center text-dark-grey">or</div>
-              <GoogleLogin
-                clientId={process.env.REACT_APP_CLIENT_ID}
-                cookiePolicy="single_host_origin"
-                render={(renderProps) => (
-                  <div className="input-group">
-                    <button
-                      className="google w-100"
-                      onClick={renderProps.onClick}
-                      disabled={renderProps.disabled}
-                    >
-                      Continue with Google
-                      <img src={google} alt="" />
-                    </button>
-                  </div>
-                )}
-                onSuccess={googleSuccess}
-                onFailure={googleFailure}
-              />
             </div>
-          </section>
+          {/* </form> */}
+          <div className="row">
+            <GoogleLogin
+              clientId={process.env.REACT_APP_CLIENT_ID}
+              cookiePolicy="single_host_origin"
+              render={(renderProps) => (
+                <div className="input-group">
+                  <button
+                    className="google w-100"
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                  >
+                    Continue with Google
+                    <img src={google} alt="" />
+                  </button>
+                </div>
+              )}
+              onSuccess={googleSuccess}
+              onFailure={googleFailure}
+            />
+          </div>
           {/* <section
             className={
               "auth-section section2 " + (section === 2 ? "active" : null)
