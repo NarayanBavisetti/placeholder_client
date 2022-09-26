@@ -12,7 +12,7 @@ const SingleCourse = () => {
             </div>
           </div>
           <div className="row grid3">
-            <SingleLecture title="Lecture 1">
+            <SingleLecture title="Lecture 1" link="/course/lecture/">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
               non officiis voluptatibus ipsam placeat error.
             </SingleLecture>

@@ -4,7 +4,7 @@ import "../../course.css";
 const SingleCourse = (props) => {
   return (
     <>
-      <Link to="/student/course/view" className="card single-course">
+      <Link to="/course/" className="card single-course">
         <div className="card-header">
           <div className="info">
             <h2 className="card-title">{props.title}</h2>

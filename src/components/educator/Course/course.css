@@ -12,4 +12,16 @@
 .single-course .desc {
   color: var(--theme-dark-grey);
   font-size: 0.95rem;
+}
+
+@media only screen and (max-width: 650px) {
+  .single-course .card-header .educator-name {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--theme-dark-grey);
+  }
+  .single-course .desc {
+    color: var(--theme-dark-grey);
+    font-size: 0.85rem;
+  }
 }/*# sourceMappingURL=course.css.map */
