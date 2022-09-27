@@ -11,6 +11,7 @@ import authHeader from "../../features/auth/auth-header";
 import Modal from "../../Modal/index";
 import successful from "../../../assets/images/icons/successful.png";
 import failed from "../../../assets/images/icons/failed.png";
+import exclamation from "../../../assets/images/icons/exclamation.png";
 
 const SignUp = () => {
   const [name, setName] = useState();
@@ -18,6 +19,7 @@ const SignUp = () => {
   const [token, setToken] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [cPassword, setCPassword] = useState();
   const navigate = useNavigate();
 
   const [modal, setModal] = useState(null);
@@ -46,48 +48,63 @@ const SignUp = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const values = {
-      name,
-      email,
-      password,
-      personType: "STUDENT",
-      loginType: "AUTH",
-    };
+    if (password === cPassword) {
+      const values = {
+        name,
+        email,
+        password,
+        personType: "STUDENT",
+        loginType: "AUTH",
+      };
 
-    axios
-      .post(`${process.env.REACT_APP_URL}/signup`, values, {
-        headers: authHeader(),
-      })
-      .then((response) => {
-        setModal(
-          <Modal
-            icon={successful}
-            message="Account created successfully."
-            buttons={[
-              {
-                label: "Sign In",
-                actions: [() => navigate("/signin")],
-              },
-            ]}
-            close={() => setModal(null)}
-          />,
-        );
-      })
-      .catch((response) => {
-        setModal(
-          <Modal
-            icon={failed}
-            message="Oops! Account creation unsuccessful. Please try again."
-            buttons={[
-              {
-                label: "Close",
-                close: true,
-              },
-            ]}
-            close={() => setModal(null)}
-          />,
-        );
-      });
+      axios
+        .post(`${process.env.REACT_APP_URL}/signup`, values, {
+          headers: authHeader(),
+        })
+        .then((response) => {
+          setModal(
+            <Modal
+              icon={successful}
+              message="Account created successfully."
+              buttons={[
+                {
+                  label: "Sign In",
+                  actions: [() => navigate("/signin")],
+                },
+              ]}
+              close={() => setModal(null)}
+            />,
+          );
+        })
+        .catch((response) => {
+          setModal(
+            <Modal
+              icon={failed}
+              message="Oops! Account creation unsuccessful. Please try again."
+              buttons={[
+                {
+                  label: "Close",
+                  close: true,
+                },
+              ]}
+              close={() => setModal(null)}
+            />,
+          );
+        });
+    } else
+      setModal(
+        <Modal
+          icon={exclamation}
+          message="Oops! Your passwords don't match. Please try again."
+          buttons={[
+            {
+              label: "Try Again",
+              close: true,
+            },
+          ]}
+          close={() => setModal(null)}
+        />,
+      );
   };
 
   const googleFailure = (error) => {
@@ -149,7 +166,7 @@ const SignUp = () => {
               <input
                 type="password"
                 id="cpassword"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setCPassword(e.target.value)}
                 placeholder="Confirm Password*"
                 required
               />
