@@ -43,7 +43,6 @@ const SingleForum = () => {
           alert(response.response.data.message);
         });
     } catch (err) {
-      console.log(err);
       navigate("/");
     }
   };
