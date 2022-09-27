@@ -5,6 +5,8 @@ import "./login.css";
 import axios from "axios";
 import authHeader from "../../features/auth/auth-header";
 import { Link } from "react-router-dom";
+import Modal from "../../Modal";
+import exclamation from "../../../assets/images/icons/exclamation.png";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -12,6 +14,8 @@ const Login = () => {
   const [message, setMessage] = useState();
   const [token, setToken] = useState();
   const navigate = useNavigate();
+
+  const [modal, setModal] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -22,6 +26,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     const values = {
       email,
       password,
@@ -38,12 +43,25 @@ const Login = () => {
         window.location.reload(true);
       })
       .catch((response) => {
-        console.log(response);
+        setModal(
+          <Modal
+            icon={exclamation}
+            message="Oops! Sign in failed. Please try again."
+            buttons={[
+              {
+                label: "Try Again",
+                close: true,
+              },
+            ]}
+            close={() => setModal(null)}
+          />,
+        );
       });
   };
 
   return (
     <>
+      {modal}
       <main className="auth-container">
         <div className="auth-header"></div>
         <div className="auth-body">
