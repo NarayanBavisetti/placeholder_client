@@ -1,4 +1,3 @@
-import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 import { Link } from "react-router-dom";
 import "../../course.css";
 
