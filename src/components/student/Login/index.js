@@ -27,7 +27,7 @@ const Login = () => {
       password,
     };
     axios
-      .post(`${process.env.REACT_APP_URL}signin`, values, {
+      .post(`${process.env.REACT_APP_URL}/signin`, values, {
         headers: authHeader(),
       })
       .then((response) => {

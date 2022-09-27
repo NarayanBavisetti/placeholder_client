@@ -30,7 +30,7 @@ const Forum = () => {
   const allForums = async () => {
     try {
       axios
-        .get(`${process.env.REACT_APP_URL}forum`, {
+        .get(`${process.env.REACT_APP_URL}/forum`, {
           headers: authHeader(),
         })
         .then((response) => {

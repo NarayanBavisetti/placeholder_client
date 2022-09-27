@@ -1,9 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./sidebar.css";
 
 const Sidebar = () => {
   const [sidebar, showSidebar] = useState(false);
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("data");
+    navigate("/signin");
+  };
 
   return (
     <>
@@ -46,12 +52,16 @@ const Sidebar = () => {
             </div>
             <span>Profile</span>
           </Link>
-          <Link to="*" className="single-link">
+          <a
+            href="javascript:void(0);"
+            onClick={logout}
+            className="single-link"
+          >
             <div className="icon">
               <i className="fas fa-sign-out-alt"></i>
             </div>
             <span>Sign Out</span>
-          </Link>
+          </a>
           <a
             href="javascript:void(0);"
             className="single-link sidebar-toggle"

@@ -50,7 +50,7 @@ const SignUp = () => {
     };
 
     axios
-      .post(`${process.env.REACT_APP_URL}signup`, values, {
+      .post(`${process.env.REACT_APP_URL}/signup`, values, {
         headers: authHeader(),
       })
       .then((response) => {
@@ -79,9 +79,7 @@ const SignUp = () => {
     await authService.signUpUser(values).then((res) => {
       setMessage(res.message);
     });
-    // res.tokenId;
   };
-  // const [section, setSection] = useState(1);
 
   return (
     <>

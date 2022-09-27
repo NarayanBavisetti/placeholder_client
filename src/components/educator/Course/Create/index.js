@@ -76,7 +76,7 @@ const CreateCourse = () => {
     };
 
     axios
-      .post(`${process.env.REACT_APP_URL}educator/course`, values, {
+      .post(`${process.env.REACT_APP_URL}/educator/course`, values, {
         headers: authHeader(),
       })
       .then((response) => {
