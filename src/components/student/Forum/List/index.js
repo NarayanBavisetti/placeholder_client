@@ -67,7 +67,7 @@ const Forum = () => {
             buttons={[
               {
                 label: "Okay",
-                actions: [() => navigate("/forum")],
+                actions: [() => window.location.reload(true)],
               },
             ]}
             close={() => setModal(null)}
