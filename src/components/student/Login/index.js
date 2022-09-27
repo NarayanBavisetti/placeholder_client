@@ -15,7 +15,7 @@ const Login = () => {
 
   useEffect(() => {
     if (token) {
-      navigate("/");
+      navigate("/course");
       alert("Login Successfull");
     }
   }, [message, token]);
@@ -34,7 +34,8 @@ const Login = () => {
         console.log(response);
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("data", JSON.stringify(response.data));
-        navigate("/");
+        navigate("/course");
+        window.location.reload(true);
       })
       .catch((response) => {
         console.log(response);
@@ -76,13 +77,13 @@ const Login = () => {
               <div className="input-group">
                 <button type="submit">Sign In</button>
               </div>
-              <div className="text-center text-dark-grey">or</div>
+              {/* <div className="text-center text-dark-grey">or</div>
               <div className="input-group">
                 <button className="google w-100">
                   Continue with Google
                   <img src={google} alt="Google Logo" />
                 </button>
-              </div>
+              </div> */}
             </div>
           </form>
         </div>

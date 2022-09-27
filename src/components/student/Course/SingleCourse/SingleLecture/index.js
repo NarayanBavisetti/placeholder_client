@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "../../course.css";
 
 const SingleLecture = (props) => {
@@ -10,9 +9,9 @@ const SingleLecture = (props) => {
           <p className="font-xss text-muted">{props.children}</p>
         </div>
         <div className="card-footer">
-          <Link to={props.link} className="btn-theme">
+          <a href={props.link} target="_blank" className="btn-theme">
             Watch&nbsp;&nbsp;<i className="fas fa-play"></i>
-          </Link>
+          </a>
         </div>
       </div>
     </>

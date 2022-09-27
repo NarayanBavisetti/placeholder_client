@@ -28,12 +28,6 @@ const Sidebar = () => {
             </div>
             <span>Courses</span>
           </Link>
-          <Link to="/test/" className="single-link">
-            <div className="icon">
-              <i className="fas fa-book-open"></i>
-            </div>
-            <span>Online Test</span>
-          </Link>
           <Link to="/forum/" className="single-link">
             <div className="icon">
               <i className="fas fa-question"></i>

@@ -135,8 +135,8 @@ const SignUp = () => {
             <div className="input-group">
               <button onClick={onSubmit}>Sign Up</button>
             </div>
-            <div>or</div>
-            {/* <GoogleLogin
+            {/* <div>or</div>
+            <GoogleLogin
               clientId={process.env.REACT_APP_CLIENT_ID}
               cookiePolicy="single_host_origin"
               render={(renderProps) => (

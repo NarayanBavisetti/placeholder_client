@@ -3,12 +3,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import authHeader from "../../../features/auth/auth-header";
 import SingleAnswer from "./SingleAnswer/index";
+import Modal from "../../../Modal/index";
+import successful from "../../../../assets/images/icons/successful.png";
+import failed from "../../../../assets/images/icons/failed.png";
 
 const SingleForum = () => {
   const [text, setText] = useState();
   const [person, setPerson] = useState([]);
   const params = useParams();
   const navigate = useNavigate();
+
+  const [modal, setModal] = useState(null);
 
   useEffect(() => {
     if (localStorage.getItem("data") != null) {
@@ -18,6 +23,7 @@ const SingleForum = () => {
   }, []);
 
   const [answers, setAnswers] = useState([]);
+  const [type, setType] = useState([]);
 
   useEffect(() => {
     allAnswers();
@@ -31,6 +37,7 @@ const SingleForum = () => {
         })
         .then((response) => {
           setAnswers(response.data.comments);
+          setType(response.data);
         })
         .catch((response) => {
           alert(response.response.data.message);
@@ -57,24 +64,45 @@ const SingleForum = () => {
         headers: authHeader(),
       })
       .then((response) => {
-        alert(response.data.message);
-        navigate("/forum");
+        setModal(
+          <Modal
+            icon={successful}
+            message="Answer has been posted successfully."
+            buttons={[
+              {
+                label: "Okay",
+                actions: [() => navigate("/forum")],
+              },
+            ]}
+            close={() => setModal(null)}
+          />,
+        );
       })
       .catch((response) => {
-        console.log(response);
+        setModal(
+          <Modal
+            icon={failed}
+            message="Oops! Answer could not be posted. Please try again"
+            buttons={[
+              {
+                label: "Close",
+                close: true,
+              },
+            ]}
+            close={() => setModal(null)}
+          />,
+        );
       });
   };
   return (
     <>
+      {modal}
       <main>
         <h1 className="page-title">Answers</h1>
         <div className="page-content">
           <div className="row">
             <div className="card">
-              <h2 className="card-title">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-                ut suscipit vitae pariatur eius autem.
-              </h2>
+              <h2 className="card-title">{type.question}</h2>
               <div className="card-body">
                 <form method="post">
                   <div className="row">
@@ -98,7 +126,7 @@ const SingleForum = () => {
                   {answers.map((item, index) => {
                     return (
                       <>
-                        <SingleAnswer name={item.userName}>
+                        <SingleAnswer name={item.userName} key={index}>
                           {item.content}
                         </SingleAnswer>
                       </>

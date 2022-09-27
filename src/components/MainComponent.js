@@ -7,8 +7,6 @@ import StudentSidebar from "./student/Sidebar/index";
 import StudentCourseList from "./student/Course/List/index";
 import StudentSingleCourse from "./student/Course/SingleCourse/index";
 import StudentSingleLecture from "./student/Course/SingleLecture/index";
-import StudentTestList from "./student/Test/List/index";
-import StudentSingleTest from "./student/Test/SingleTest/index";
 import ForumList from "./student/Forum/List/index";
 import SingleForum from "./student/Forum/SingleForum/index";
 
@@ -16,8 +14,6 @@ import SingleForum from "./student/Forum/SingleForum/index";
 import EducatorSidebar from "./educator/Sidebar/index";
 import EducatorCourseList from "./educator/Course/List/index";
 import EducatorCreateCourse from "./educator/Course/Create/index";
-import EducatorTestList from "./educator/Test/List/index";
-import EducatorCreateTest from "./educator/Test/Create/index";
 
 import "../assets/css/common.css";
 import { Route, Routes } from "react-router-dom";

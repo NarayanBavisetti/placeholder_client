@@ -93,6 +93,7 @@ const Forum = () => {
 
   return (
     <>
+      {modal}
       <main>
         <h1 className="page-title">QnA Forum</h1>
         <div className="page-content">
@@ -122,7 +123,7 @@ const Forum = () => {
             {questions.map((item, index) => {
               return (
                 <>
-                  <SingleForum answers="5" link={item._id}>
+                  <SingleForum answers="5" link={item._id} key={index}>
                     {item.question}
                   </SingleForum>
                 </>

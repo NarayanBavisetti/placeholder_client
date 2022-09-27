@@ -41,13 +41,22 @@ const SingleCourse = () => {
           <div className="row">
             <div className="card course-info">
               <h2 className="card-title">by {courseDetails.educatorName}</h2>
+              <div className="card-body">
+                <p className="font-xs text-muted">
+                  {courseDetails.description}
+                </p>
+              </div>
             </div>
           </div>
           <div className="row grid3">
             {course.map((item, index) => {
               return (
                 <>
-                  <SingleLecture title={item.title} link={item.video}>
+                  <SingleLecture
+                    title={item.title}
+                    link={item.video}
+                    key={index}
+                  >
                     {item.description}
                   </SingleLecture>
                 </>
