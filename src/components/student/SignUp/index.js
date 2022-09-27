@@ -8,6 +8,9 @@ import { gapi } from "gapi-script";
 import authService from "../../features/auth/authServices";
 import axios from "axios";
 import authHeader from "../../features/auth/auth-header";
+import Modal from "../../Modal/index";
+import successful from "../../../assets/images/icons/successful.png";
+import failed from "../../../assets/images/icons/failed.png";
 
 const SignUp = () => {
   const [name, setName] = useState();
@@ -16,6 +19,8 @@ const SignUp = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+
+  const [modal, setModal] = useState(null);
 
   useEffect(() => {
     if (message) {
@@ -54,12 +59,34 @@ const SignUp = () => {
         headers: authHeader(),
       })
       .then((response) => {
-        console.log(response);
-        alert("Sign Up Successfull");
-        navigate("/signin");
+        setModal(
+          <Modal
+            icon={successful}
+            message="Account created successfully."
+            buttons={[
+              {
+                label: "Sign In",
+                actions: [() => navigate("/signin")],
+              },
+            ]}
+            close={() => setModal(null)}
+          />,
+        );
       })
       .catch((response) => {
-        alert(response.response.data.message);
+        setModal(
+          <Modal
+            icon={failed}
+            message="Oops! Account creation unsuccessful. Please try again."
+            buttons={[
+              {
+                label: "Close",
+                close: true,
+              },
+            ]}
+            close={() => setModal(null)}
+          />,
+        );
       });
   };
 
@@ -83,6 +110,7 @@ const SignUp = () => {
 
   return (
     <>
+      {modal}
       <main className="auth-container">
         <div className="auth-header sign-up"></div>
         <div className="auth-body">
