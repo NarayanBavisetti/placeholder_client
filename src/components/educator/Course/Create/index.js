@@ -87,7 +87,7 @@ const CreateCourse = () => {
             buttons={[
               {
                 label: "Okay",
-                actions: [() => navigate("/mycourses")],
+                actions: [() => navigate("/educator/course")],
               },
             ]}
             close={() => setModal(null)}
