@@ -123,7 +123,11 @@ const Forum = () => {
             {questions.map((item, index) => {
               return (
                 <>
-                  <SingleForum answers="5" link={item._id} key={index}>
+                  <SingleForum
+                    answers={item.comments.length}
+                    link={item._id}
+                    key={index}
+                  >
                     {item.question}
                   </SingleForum>
                 </>

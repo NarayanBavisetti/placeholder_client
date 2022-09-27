@@ -12,10 +12,6 @@ const SingleForum = (props) => {
               <i className="fas fa-user"></i>
               {props.answers} answers
             </div>
-            <div className="single-meta text-muted">
-              <i className="fas fa-user"></i>
-              {props.answers} answers
-            </div>
           </div>
         </div>
       </Link>
